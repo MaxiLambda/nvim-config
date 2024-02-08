@@ -5,4 +5,4 @@ return {
 		--load colorscheme
 		vim.cmd([[colorscheme tokyonight]])
 	end
-}  
+}

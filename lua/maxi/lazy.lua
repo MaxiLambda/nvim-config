@@ -11,9 +11,16 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({ { import = "maxi.plugins" }, { import = "maxi.plugins.lsp" } }, {
+require("lazy").setup({
+  { import = "maxi.plugins" },
+  { import = "maxi.plugins.lsp" },
+  {
+    'mrcjkb/haskell-tools.nvim',
+    version = '^3', -- Recommended
+    ft = { 'haskell', 'lhaskell', 'cabal', 'cabalproject' },
+  }, }, {
   install = {
-    colorscheme = { "nightfly" },
+    colorscheme = { "tokyonight" },
   },
   checker = {
     enabled = true,

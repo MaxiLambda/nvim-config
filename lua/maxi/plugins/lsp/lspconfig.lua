@@ -1,6 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
-  event = { "BufReadPre", "BufNewFile" },
+   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
@@ -14,8 +14,8 @@ return {
 
     local keymap = vim.keymap -- for conciseness
 
+    vim.g.on_attach = function(client, bufnr)
     local opts = { noremap = true, silent = true }
-    local on_attach = function(client, bufnr)
       opts.buffer = bufnr
 
       -- set keybinds
@@ -59,9 +59,11 @@ return {
       keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
 
       opts.desc = "hide line diagnostic"
-      keymap.set("n", "<leader>nd", vim.diagnostic.hide , opts)
-    end
+      keymap.set("n", "<leader>nd", vim.diagnostic.hide, opts)
 
+      opts.desc = "format file"
+      keymap.set("n", "<leader>cf", vim.lsp.buf.format, opts)
+    end
     -- used to enable autocompletion (assign to every lsp server config)
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
@@ -72,10 +74,13 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
+--    lspconfig["hls"].setup({
+--      on_attach = on_attach})
+
     -- configure lua server (with special settings)
     lspconfig["lua_ls"].setup({
       capabilities = capabilities,
-      on_attach = on_attach,
+      on_attach = vim.g.on_attach,
       settings = { -- custom settings for lua
         Lua = {
           -- make the language server recognize "vim" global
