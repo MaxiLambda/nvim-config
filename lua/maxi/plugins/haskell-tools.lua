@@ -3,8 +3,16 @@ return {
   version = '^3', -- Recommended
   ft = { 'haskell', 'lhaskell', 'cabal', 'cabalproject' },
   config = function()
-    
+
     vim.g.on_attach()
+
+
+    local cmp_nvim_lsp = require("cmp_nvim_lsp")
+    local capabilities = cmp_nvim_lsp.default_capabilities()
+    local lspconfig = require("lspconfig")
+
+    lspconfig["hls"].setup({
+      capabilities = capabilities})
 
     local ht = require('haskell-tools')
     local bufnr = vim.api.nvim_get_current_buf()

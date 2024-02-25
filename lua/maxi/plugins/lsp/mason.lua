@@ -29,6 +29,7 @@ return {
       ensure_installed = {
         "lua_ls",
         "hls",
+        "jdtls",
       },
       -- auto-install configured servers (with lspconfig)
       automatic_installation = true, -- not the same as ensure_installed
@@ -38,6 +39,7 @@ return {
       ensure_installed = {
         "stylua", -- lua formatter
         "fourmolu", -- lua formatter
+        "java-debug-adapter",
       },
     })
   end,

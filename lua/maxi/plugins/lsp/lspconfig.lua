@@ -1,6 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
-   event = { "BufReadPre", "BufNewFile" },
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
@@ -15,7 +15,7 @@ return {
     local keymap = vim.keymap -- for conciseness
 
     vim.g.on_attach = function(client, bufnr)
-    local opts = { noremap = true, silent = true }
+      local opts = { noremap = true, silent = true }
       opts.buffer = bufnr
 
       -- set keybinds
@@ -74,9 +74,13 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
---    lspconfig["hls"].setup({
---      on_attach = on_attach})
-
+--    lspconfig["jdtls"].setup({
+--      capabilities = capabilities,
+--      on_attach = function(client,bufnr)
+--        vim.g.on_attach(client,bufnr)
+--      end,
+--    })
+--
     -- configure lua server (with special settings)
     lspconfig["lua_ls"].setup({
       capabilities = capabilities,

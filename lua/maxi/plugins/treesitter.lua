@@ -25,6 +25,9 @@ return {
           "lua",
           "vim",
           "gitignore",
+          "vimdoc",
+          "java",
+          "xml",
         },
         incremental_selection = {
           enable = true,
