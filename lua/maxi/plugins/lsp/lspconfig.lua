@@ -26,7 +26,8 @@ return {
       keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
 
       opts.desc = "Show LSP definitions"
-      keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+      --keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+      keymap.set("n", "gd", vim.lsp.buf.definition, opts) -- show lsp definitions
 
       opts.desc = "Show LSP implementations"
       keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
@@ -74,13 +75,16 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
---    lspconfig["jdtls"].setup({
---      capabilities = capabilities,
---      on_attach = function(client,bufnr)
---        vim.g.on_attach(client,bufnr)
---      end,
---    })
---
+    lspconfig["spectral"].setup({
+      capabilities = capabilities,
+      on_attach = vim.g.on_attach,
+    })
+
+    lspconfig["lemminx"].setup({
+      capabilities = capabilities,
+      on_attach = vim.g.on_attach,
+    })
+
     -- configure lua server (with special settings)
     lspconfig["lua_ls"].setup({
       capabilities = capabilities,
