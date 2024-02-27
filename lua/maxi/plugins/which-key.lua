@@ -11,6 +11,7 @@ return {
 
     --register intermediate menu descriptions
     wk.register({
+      o = { name = "buffer manipulation" },
       f = { name = "find" },
       c = {
         name = "code actions",

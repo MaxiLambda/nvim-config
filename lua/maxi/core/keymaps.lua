@@ -33,3 +33,8 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 -- experimental
 -- replace word under cursor in file
 keymap.set("n", "<leader>fw", "yiw:%s/<c-r>0/", { desc = "replace word under cursor"})
+
+-- refresh buffer
+keymap.set("n", "<leader>br", "<cmd>w|bd|e#<CR>", {desc = "refresh buffer"})
+keymap.set("n", "<leader>bc", "<cmd>wa|%bd|e#|bd#<CR>", {desc = "close all but this buffer"})
+keymap.set("n", "<leader>ba", "<cmd>wa|%bd<CR>", {desc = "close all buffers"})

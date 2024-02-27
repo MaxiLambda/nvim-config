@@ -2,7 +2,11 @@ local home = os.getenv('HOME')
 local jdtls_setup = require('jdtls.setup')
 --maybe add .git
 local root_dir = jdtls_setup.find_root({ "pom.xml" })
-local workspace_folder = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
+local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
+local workspace_folder = home .. "/.local/share/eclipse/" .. project_name
+
+-- add mapping to clear jdtl cache of current project
+vim.keymap("<n>", "<leader>rc", ":!rm -r " .. workspace_folder, { desc = "clear project jdtl cache"})
 
 local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
