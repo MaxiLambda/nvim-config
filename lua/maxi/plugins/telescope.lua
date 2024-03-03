@@ -51,6 +51,15 @@ return {
     -- set keymaps
     local keymap = vim.keymap -- for conciseness
 
+    keymap.set("n", "<leader>ft", function()
+      if vim.ui then
+        print("ui set")
+
+      else
+        print("not set")
+      end
+    end
+    )
     keymap.set("n", "<leader>ff", ":Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
     keymap.set("n", "<leader>fr", ":Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
     keymap.set("n", "<leader>fs", ":Telescope live_grep<cr>", { desc = "Find string in cwd" })

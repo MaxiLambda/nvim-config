@@ -5,9 +5,6 @@ local root_dir = jdtls_setup.find_root({ "pom.xml" })
 local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
 local workspace_folder = home .. "/.local/share/eclipse/" .. project_name
 
--- add mapping to clear jdtl cache of current project
-vim.keymap("<n>", "<leader>rc", ":!rm -r " .. workspace_folder, { desc = "clear project jdtl cache"})
-
 local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 local jar = vim.fn.glob(home .. "/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar", false, false)
