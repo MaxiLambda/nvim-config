@@ -40,3 +40,6 @@ opt.splitbelow = true -- split horizontal window to the bottom
 
 -- turn off swapfile
 opt.swapfile = false
+
+-- dont resize buffers after opening/closing a buffer
+opt.equalalways = false

@@ -6,6 +6,7 @@ return {
     {
       "rcarriga/nvim-dap-ui",
       -- stylua: ignore
+      dependencies = "nvim-neotest/nvim-nio",
       keys = {
         { "<leader>cdu", function() require("dapui").toggle({}) end, desc = "Debug UI toggle" },
         { "<leader>cde", function() require("dapui").eval() end,     desc = "Debug - Eval",   mode = { "n", "v" } },
@@ -60,6 +61,36 @@ return {
   },
 
   config = function()
+    local dap = require("dap")
+
+    dap.adapters.haskell = {
+      type = 'executable',
+      command = 'haskell-debug-adapter',
+    }
+
+    local workspaceFolder = vim.fn.getcwd()
+    dap.configurations.haskell = {
+      {
+        type = 'haskell',
+        request = 'launch',
+        name = "haskell-debug-adapter",
+        program = "${file}",
+        workspace = workspaceFolder,
+        startup = workspaceFolder .. "/test/Spec.hs",
+        startupFunc = "",
+        startupArgs = "",
+        stopOnEntry = false,
+        mainArgs = "",
+        ghciPrompt = "H>>= ",
+        ghciInitialPrompt = "> ",
+        ghciCmd = "stack ghci --test --no-load --no-build --main-is TARGET --ghci-options -fprint-evld-with-show",
+        ghciEnv = { dummy = "" },
+        logFile = "${workspaceFolder}/.log/debug.log",
+        logLevel = "DEBUG",
+        forceInspect = false,
+      }
+    }
+
     require('dap.ext.vscode').load_launchjs()
     vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 

@@ -80,6 +80,11 @@ return {
       on_attach = vim.g.on_attach,
     })
 
+    lspconfig["clangd"].setup({
+      capabilities = capabilities,
+      on_attach = vim.g.on_attach,
+    })
+
     lspconfig["lemminx"].setup({
       capabilities = capabilities,
       on_attach = vim.g.on_attach,
